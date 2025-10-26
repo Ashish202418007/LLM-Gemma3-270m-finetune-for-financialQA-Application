@@ -33,7 +33,7 @@ Users should verify critical information independently.
 
 
 ## How to Use:
-**using hugginh face transformers**
+**using hugging face transformers**
 
 ```Bash
 from transformers import AutoTokenizer, AutoModelForCausalLM
@@ -100,7 +100,7 @@ predictor.predict({
 ## Training Data
 
 Whole dataset can be found here:
-!href[https://www.kaggle.com/datasets/ashish202418007/gemma3-270m-financial-qa-finetuning-dataset]
+[https://www.kaggle.com/datasets/ashish202418007/gemma3-270m-financial-qa-finetuning-dataset]
 
 **Datasets Used:**  
 **Citation:**
@@ -125,4 +125,5 @@ Source: Financial Q&A 10k on Kaggle
   howpublished={\url{https://www.kaggle.com/datasets/yousefsaeedian/financial-q-and-a-10k}}
 }
 ```
+
 
