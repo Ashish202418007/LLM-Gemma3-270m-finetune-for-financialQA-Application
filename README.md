@@ -7,8 +7,7 @@
 
 **Model Type:** [Gemma 3 270M]  
 **Framework:** [Unsloth]  
-**Package:** [transformer reinforcement learning]
-**Task:** [Financial Question answering]  
+**Package:** [transformer reinforcement learning]  
 **Language(s):** [English]
 
 **Abstract:**  
@@ -125,6 +124,7 @@ Source: Financial Q&A 10k on Kaggle
   howpublished={\url{https://www.kaggle.com/datasets/yousefsaeedian/financial-q-and-a-10k}}
 }
 ```
+
 
 
 
