@@ -1,45 +1,36 @@
-# push_lora_argparse.py
+# need !huggingface-cli login and llama.cpp
 
+from unsloth import FastLanguageModel
 import argparse
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftModel
-from huggingface_hub import HfApi, login
+from huggingface_hub import create_repo
 
-def main(args):
-    login(token=args.hf_token)
-    model = AutoModelForCausalLM.from_pretrained(args.base_model)
-    tokenizer = AutoTokenizer.from_pretrained(args.base_model)
-    model = PeftModel.from_pretrained(model, args.lora_checkpoint)
+def pushtoHF(model_path_or_name:str, huggingface_username:str, model_name:str):
+
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_path_or_name,
+        trust_remote_code=True
+        )
+    
+  
+    print("\nPushing merged 16-bit model to the Hub...")
+    model.push_to_hub_merged(f"{huggingface_username}/{model_name}-merged-16bit", tokenizer, save_method="merged_16bit")
+    print(f"Successfully pushed merged 16-bit model to {huggingface_username}/{model_name}-merged-16bit")
 
 
-    model.save_pretrained_merged(
-        args.local_save_path,
-        tokenizer,
-        save_method="merged_16bit"
-    )
-    print(f"Merged model saved locally at: {args.local_save_path}")
+    print("\nPushing GGUF quantized model to the Hub...")
+    model.push_to_hub_gguf(f"{huggingface_username}/{model_name}-gguf", tokenizer, quantization_method="q4_k_m")
+    print(f"Successfully pushed GGUF model to {huggingface_username}/{model_name}-gguf")
 
-    model.push_to_hub_merged(
-        args.hf_repo_name,
-        tokenizer,
-        save_method="merged_16bit",
-        token=args.hf_token
-    )
-    print(f"Merged model pushed to Hugging Face at: https://huggingface.co/{args.hf_repo_name}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Push Unsloth LoRA model to Hugging Face")
-
-    parser.add_argument("--base_model", type=str, required=True,
-                        help="Base model name (e.g., gemma3-270m)")
-    parser.add_argument("--lora_checkpoint", type=str, required=True,
-                        help="Path to Unsloth LoRA checkpoint folder")
-    parser.add_argument("--local_save_path", type=str, default="merged_model_16bit",
-                        help="Local folder to save merged model")
-    parser.add_argument("--hf_repo_name", type=str, required=True,
-                        help="Hugging Face repo name (username/model-name)")
-    parser.add_argument("--hf_token", type=str, required=True,
-                        help="Hugging Face API token")
+    parser = argparse.ArgumentParser(description="Push Pushto model to Hugging Face Hub")
+    parser.add_argument("model_path_or_name", type=str, help="Path or name of the Pushto model")
+    parser.add_argument("huggingface_username", type=str, help="Hugging Face directory (username or organization)")
+    parser.add_argument("model_name", type=str, help="Name for the model on Hugging Face Hub")
+    parser.add_argument("--skip_merged", action="store_true")
+    parser.add_argument("--skip_gguf", action="store_true")
 
     args = parser.parse_args()
-    main(args)
+
+    pushtoHF(args.model_path_or_name, args.huggingface_username, args.model_name)
+    
