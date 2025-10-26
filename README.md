@@ -1,6 +1,5 @@
 # Model Name
 
-**Short description:**
 Gemma 3 270M is a tiny, 270-million parameter model from Google, built for efficient, on-device use, instruction based, and fast text generation with strong support for fine-tuning.
 It is fine-tuned as Gemma 3 270M FinanceQA for financial news question-answering. Fine-tuned on news and financial Q&A datasets using the Unsloth framework with LoRA PEFT (rank 16, alpha 32) and transformer reinforcement learning, it delivers financial news and is ideal for finance-focused applications.
 ---
@@ -121,3 +120,4 @@ Citation:
   year={2023},
   howpublished={\url{https://www.kaggle.com/datasets/yousefsaeedian/financial-q-and-a-10k}}
 }
+
