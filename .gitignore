@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+Example
+notebooks
+mlruns
+unsloth_compiled_cache/
+outputs
+data/data.ipynb
+archive
+.env
+output
+uv.lock
+
+data

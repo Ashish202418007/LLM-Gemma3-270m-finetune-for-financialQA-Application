@@ -1,0 +1,23 @@
+[project]
+name = "llm-finetune"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "datasets>=4.2.0",
+    "fastparquet>=2024.11.0",
+    "ipykernel>=7.0.1",
+    "kagglehub[pandas-datasets]>=0.3.13",
+    "mlflow>=3.4.0",
+    "pandas>=2.3.3",
+    "peft>=0.17.1",
+    "plotly>=6.3.1",
+    "pyarrow>=21.0.0",
+    "torch>=2.8.0",
+    "tqdm>=4.67.1",
+    "transformers>=4.56.2",
+    "trl>=0.23.0",
+    "unsloth>=2025.10.7",
+    "unsloth-zoo>=2025.10.8",
+]
