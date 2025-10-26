@@ -1,6 +1,6 @@
 ## Model Name
 
-Gemma 3 270M FinanceQA for financial news question-answering. Fine-tuned on news and financial Q&A datasets using the Unsloth framework with LoRA PEFT (rank 16, alpha 32) and transformer reinforcement learning, it delivers financial news and is ideal for finance-focused applications.
+#### Gemma 3 270M FinanceQA for financial news question-answering. Fine-tuned on news and financial Q&A datasets using the Unsloth framework with LoRA PEFT (rank 16, alpha 32) and transformer reinforcement learning, it delivers financial news and is ideal for finance-focused applications.
 ---
 
 ## Model Overview
@@ -125,6 +125,7 @@ Source: Financial Q&A 10k on Kaggle
   howpublished={\url{https://www.kaggle.com/datasets/yousefsaeedian/financial-q-and-a-10k}}
 }
 ```
+
 
 
 
