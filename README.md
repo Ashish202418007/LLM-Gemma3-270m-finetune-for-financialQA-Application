@@ -1,7 +1,6 @@
 # Model Name
 
-Gemma 3 270M is a tiny, 270-million parameter model from Google, built for efficient, on-device use, instruction based, and fast text generation with strong support for fine-tuning.
-It is fine-tuned as Gemma 3 270M FinanceQA for financial news question-answering. Fine-tuned on news and financial Q&A datasets using the Unsloth framework with LoRA PEFT (rank 16, alpha 32) and transformer reinforcement learning, it delivers financial news and is ideal for finance-focused applications.
+Gemma 3 270M FinanceQA for financial news question-answering. Fine-tuned on news and financial Q&A datasets using the Unsloth framework with LoRA PEFT (rank 16, alpha 32) and transformer reinforcement learning, it delivers financial news and is ideal for finance-focused applications.
 ---
 
 ## Model Overview
@@ -31,6 +30,11 @@ Accuracy may degrade on highly technical financial texts outside the dataset’s
 The model may reflect biases present in both NewsQA and financial datasets.  
 Users should verify critical information independently.
 
+
+
+## How to Use:
+**using hugginh face transformers**
+
 ```Bash
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
@@ -50,6 +54,7 @@ inputs = tokenizer.apply_chat_template(
 outputs = model.generate(**inputs, max_new_tokens=40)
 print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
 ```
+**using sagemaker**
 
 ```bash
 import json
@@ -98,26 +103,26 @@ Whole dataset can be found here:
 !href[https://www.kaggle.com/datasets/ashish202418007/gemma3-270m-financial-qa-finetuning-dataset]
 
 **Datasets Used:**  
-
+**Citation:**
 1. **NewsQA** – A dataset of question-answer pairs from CNN news articles.  
-   **Citation:**  
    
-bibtex
-
+```bash
    @inproceedings{trischler2017newsqa,
      title={NewsQA: A Machine Comprehension Dataset},
      author={Trischler, Adam and Wang, Tong and Yuan, Xingdi and Harris, Justin and Sordoni, Alessandro and Bachman, Philip and Suleman, Kaheer},
      booktitle={Proceedings of the 2nd Workshop on Representation Learning for NLP},
      year={2017}
    }
+```
 2. **Financial Q&A 10k** – A Kaggle dataset of financial question-answer pairs.
 Source: Financial Q&A 10k on Kaggle
 
-Citation:   
+```bash 
 @misc{saeedian2023financialqa,
   title={Financial Q\&A 10k Dataset},
   author={Yousef Saeedian},
   year={2023},
   howpublished={\url{https://www.kaggle.com/datasets/yousefsaeedian/financial-q-and-a-10k}}
 }
+```
 
